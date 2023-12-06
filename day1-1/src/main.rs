@@ -26,6 +26,15 @@ fn main() {
         Ok(f) => f,
     };
 
+    match collect_and_sum_digits(contents) {
+        Ok(result) => println!("{}", result),
+        Err(message) => eprintln!("{}", message)
+    };
+
+    return;
+}
+
+pub fn collect_and_sum_digits(contents: String) -> Result<i32, String> {
     // Iterate through every line
     let mut result: i32 = 0; 
     for line in contents.split("\n") {
@@ -49,16 +58,13 @@ fn main() {
         }
         // If we don't have any digits on the line, print error message
         if first_digit.is_none() || last_digit.is_none() {
-            eprintln!("Malformed input. Line {} does not contain any numeric characters.", line);
-            return;
+            return Err(format!("Malformed input. Line {} does not contain any numeric characters.", line));
         }
         // Parse digits as integer, add to cumulative result
         result += format!("{}{}", first_digit.unwrap(), last_digit.unwrap()).parse::<i32>().unwrap();
     }
 
-    // Print result
-    println!("{}", result);
-    return;
+    return Ok(result);
 }
 
 // Returns true if the supplied character is a digit (ASCII '0' - '9'), false otherwise.
