@@ -49,7 +49,7 @@ fn main() {
         }
         // If we don't have any digits on the line, print error message
         if first_digit.is_none() || last_digit.is_none() {
-            eprintln!("Malformed input. Line {} does not any numeric characters.", line);
+            eprintln!("Malformed input. Line {} does not contain any numeric characters.", line);
             return;
         }
         // Parse digits as integer, add to cumulative result
