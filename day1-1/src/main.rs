@@ -71,3 +71,22 @@ pub fn collect_and_sum_digits(contents: String) -> Result<i32, String> {
 fn is_digit(c: char) -> bool {
     return c >= '0' && c <= '9';
 }
+
+#[cfg(test)]
+mod tests {
+
+    const TEST_VECTOR: &str = "
+    1abc2
+    pqr3stu8vwx
+    a1b2c3d4e5f
+    treb7uchet";
+
+    #[test]
+    fn test() {
+        let result = match crate::collect_and_sum_digits(TEST_VECTOR.to_string()) {
+            Ok(res) => res,
+            Err(message) => panic!("{}", message),
+        };
+        assert_eq!(result, 142);
+    }
+}
