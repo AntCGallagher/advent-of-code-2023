@@ -48,10 +48,9 @@ pub fn collect_and_sum_digits(contents: String) -> Result<i32, String> {
         // Note: If only one digit is present on the line, last digit will be the same as first digit
         let mut first_digit: Option<char> = None;
         let mut last_digit: Option<char> = None;
-        
-        // Keep track of an index to start substring search at
-        // If a match is found, advance index once to start searching further into the string
-        // let mut current_index = 0;
+
+        // Iterate through each line forwards to find the first digit
+        // Then iterate through each line backwards to find the last digit 
         for i in 0..line.len() {
             // End index of slice is exclusive, so add 1 to ensure we cover the full string
             if first_digit.is_none() {
